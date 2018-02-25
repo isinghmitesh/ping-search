@@ -1,0 +1,317 @@
+{% extends 'search/base.html' %}
+<html>
+    <head>
+       <title>{{ keyword }}</title>
+      <!-- Latest compiled and minified CSS -->
+	  <link rel="stylesheet" href="../../static/css/slider.css">
+      <link rel="stylesheet" href="../../static/css/bootstrap.css">
+
+      <script src="../../static/js/jquery.js"></script>
+
+      <!-- Latest compiled and minified JavaScript -->
+      <script src="../../static/js/bootstrap.js"></script>
+	  <script src="../../static/js/javascriptSlider.js"></script>
+	  
+	</head>
+    <body>
+    {% block body %}
+
+    <! Search Bar !>
+
+        <div class="text-center">
+         <h3 style="font-family: 'Nixie One';font-size: 4vmin">#Shopping #Search #Simplified</h3>
+        </div>
+    <div class="col-xs-offset-1 col-xs-10 col-lg-offset-3 col-lg-6">
+        <form role="search" method="get" action="http://127.0.0.1:8000/product">
+            <div class="input-group">
+                {% csrf_token %}
+                {{ form }}
+                <datalist id="src">
+                    {% for q in auto_complete %}
+                        <option value="{{ q.search_term }}">
+                    {% endfor %}
+                </datalist>
+                <div class="input-group-btn">
+                    <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+		<!-- Item slider-->
+		<div class="container-fluid">
+
+		  <div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12">
+			  <div class="carousel carousel-showmanymoveone slide" id="itemslider">
+				<div class="carousel-inner">
+					 <div class="carousel-inner">
+					  <div class="item active">
+						<div class="col-lg-4 container-fluid">
+                            <div class="top-buffer">
+                                <div class="col-lg-offset-3 col-lg-6">
+                                    <div class="thumbnail">
+                                        <img src="../../static/images/snapdeal_logo.jpg" href="https://www.snapdeal.com"
+                                            width="100px" height="80px" alt="">
+                                    </div>
+                                 </div>
+
+                                <!--Product Starts Here -->
+                                {% if snd_products %}
+                                    {% for S_product in snd_products %}
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                            <div class="product_container container-fluid">
+                                                <div class="centered ">
+                                                    <img class="img-thumbnail image" src="{{ S_product.p_img }}" alt="Product Image"
+                                                         style="width:218px;">
+                                                </div>
+
+                                <div class="centered ">
+                                    <p class="text" style=" font-size: 2.7vmin; word-break: break-all;"><a
+                                            href="{{ S_product.p_link }}"
+                                            target="_blank">{{ S_product.p_name|slice:":50" }}</a>
+                                    </p>
+                                </div>
+                                <div class="centered caption">
+                                    <s><h5 class="text" style="font-size: 2.7vmin;">{{ S_product.st_price }}</h5></s>
+                                </div>
+                                <div class="centered caption ">
+                                    <h4 class="text" style="font-size: 2.7vmin;">Rs. {{ S_product.act_price }}</h4>
+                                </div>
+                                <div class="row"><p></p></div>
+                                <div class="centered caption">
+                                    <h5 class="text" style="font-size: 2.7vmin;">{{ S_product.review }} <span
+                                            class="glyphicon glyphicon-heart"
+                                            style="color:red"></span></h5>
+                                </div>
+
+                                <div class="centered" style="position: absolute; bottom: 20px; max-width: 10px">
+                                    <a href="{{ S_product.p_link }}" target="_blank">
+                                        <button class="btn btn-danger"><p style="font-size: 2.4vmin;">Buy on
+                                            snapdeal</p></button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="row"><p></p></div>
+
+                    <div class="row">
+                        <b><h3 class="text-center">No results found</h3></b>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+					  </div>
+
+
+
+
+
+
+
+
+
+
+					  <div class="item">
+						<div class="col-lg-4 container-fluid">
+            <div class="top-buffer">
+                <div class="col-lg-offset-3 col-md-6">
+                    <div class="thumbnail">
+                        <img src="../../static/images/amazon_logo.png" href="https://www.amazon.in"
+                             width="100px" height="80px" alt="">
+                    </div>
+                </div>
+
+                <!--Product Starts Here -->
+                {% if amz_products %}
+                    {% for a_product in amz_products %}
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <div class="product_container container-fluid">
+                                <div class="centered">
+                                    <img class="img-thumbnail" src="{{ a_product.p_img }}" alt="Product Image"
+                                         style="width:218px;">
+                                </div>
+                                <div class="centered caption">
+                                    <p class="text" style="font-size: 2.7vmin; word-break: break-all; padding-right: 10px">
+                                        <a href="{{ a_product.p_link }}"
+                                           target="_blank">{{ a_product.p_name|slice:":50" }}</a></p>
+                                </div>
+                                <div class="centered">
+                                    <s><h5 class="text" style="font-size: 2.7vmin;">{{ a_product.st_price }}</h5></s>
+                                </div>
+                                <div class="centered">
+                                    <h4 class="text" style="font-size: 2.7vmin;">Rs. {{ a_product.act_price }}</h4>
+                                </div>
+                                <div class="row"><p></p></div>
+                                <div class="centered caption">
+                                    <h5 class="text" style="font-size: 2.7vmin;">{{ a_product.review }} <span
+                                            class="glyphicon glyphicon-star"
+                                            style="color:gold"></span></h5>
+                                </div>
+                                <div class="centered buy_button">
+                                    <a href="{{ a_product.p_link }}" target="_blank">
+                                        <button class="btn btn-warning"><p style="font-size: 2.2vmin;">Buy on amazon</p>
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="row"><p></p></div>
+
+                    <div class="row">
+                        <b><h3 class="text-center">No results found</h3></b>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+					  </div>
+
+
+
+
+
+
+					  <div class="item">
+						<div class="col-lg-4 container-fluid">
+            <div class="top-buffer">
+                <div class="col-lg-offset-3 col-md-6">
+                    <div class="thumbnail">
+                        <img src="../../static/images/flipkart_logo.png" href="https://www.amazon.in"
+                             width="100px" height="80px" alt="">
+                    </div>
+                </div>
+
+                <!--Product Starts Here -->
+                {% if flp_products %}
+                    {% for f_product in flp_products %}
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <div class="product_container container-fluid">
+                                <div class="centered">
+                                    <img class="img-thumbnail" src="{{ f_product.p_img }}" alt="Product Image"
+                                         style="width:218px; height: 218px" >
+                                </div>
+                                <div class="centered caption">
+                                    <p class="text" style="font-size: 2.7vmin; word-break: break-all; padding-right: 10px">
+                                        <a href="{{ f_product.p_link }}"
+                                           target="_blank">{{ f_product.p_name|slice:":50" }}</a></p>
+                                </div>
+                                <div class="centered">
+                                    <s><h5 class="text" style="font-size: 2.7vmin;">{{ f_product.st_price }}</h5></s>
+                                </div>
+                                <div class="centered">
+                                    <h4 class="text" style="font-size: 2.7vmin;">Rs. {{ f_product.act_price }}</h4>
+                                </div>
+                                <div class="row"><p></p></div>
+                                <div class="centered caption">
+                                    <h5 class="text" style="font-size: 2.7vmin;">{{ f_product.p_brand_name }} <span
+                                            class="glyphicon glyphicon-star"
+                                            style="color:gold"></span></h5>
+                                </div>
+                                <div class="centered buy_button" >
+                                    <a href="{{ f_product.p_link }}" target="_blank">
+                                        <button class="btn" style="background-color: #f1c40f" >
+                                            <p style="font-size: 2.2vmin; color: #ffffff" >Buy on Flipkart</p>
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="row"><p></p></div>
+
+                    <div class="row">
+                        <b><h3 class="text-center">No results found</h3></b>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+					  </div>
+
+
+
+
+
+
+
+
+                     <div class="item">
+					    <div class="col-lg-4 container-fluid">
+            <div class="top-buffer">
+                <div class="col-lg-offset-3 col-md-6">
+                    <div class="thumbnail">
+                        <img src="../../static/images/ebay_logo.png" href="https://www.ebay.in"
+                             width="100px" height="80px" alt="">
+                    </div>
+                </div>
+
+                <!--Product Starts Here -->
+                {% if eby_products %}
+                    {% for e_product in eby_products %}
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <div class="product_container container-fluid">
+                                <div class="centered">
+                                    <img class="img-thumbnail" src="{{ e_product.p_img }}" alt="Product Image"
+                                         style="width:218px; height: 218px" >
+                                </div>
+                                <div class="centered caption">
+                                    <p class="text" style="font-size: 2.7vmin; word-break: break-all; padding-right: 10px">
+                                        <a href="{{ e_product.p_link }}"
+                                           target="_blank">{{ e_product.p_name|slice:":50" }}</a></p>
+                                </div>
+                                <div class="centered">
+                                    <s><h5 class="text" style="font-size: 2.7vmin;">{{ e_product.st_price }}</h5></s>
+                                </div>
+                                <div class="centered">
+                                    <h4 class="text" style="font-size: 2.7vmin;">Rs. {{ e_product.act_price }}</h4>
+                                </div>
+                                <div class="row"><p></p></div>
+                                <div class="centered caption">
+                                    <h5 class="text" style="font-size: 2.7vmin;">{{ e_product.p_brand_name }} <span
+                                            class="glyphicon glyphicon-star"
+                                            style="color:gold"></span></h5>
+                                </div>
+                                <div class="centered buy_button" >
+                                    <a href="{{ e_product.p_link }}" target="_blank">
+                                        <button class="btn" style="background-color: #3498db" >
+                                            <p style="font-size: 2.2vmin; color: #ffffff" >Buy on Ebay</p>
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="row"><p></p></div>
+
+                    <div class="row">
+                        <strong><h3 class="text-center">No results found</h3></strong>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+					 </div>
+
+
+        </div>
+
+				</div>
+
+				<div id="slider-control">
+				<a class="left carousel-control" href="#itemslider" data-slide="prev"><img src="https://s12.postimg.org/uj3ffq90d/arrow_left.png" alt="Left" class="img-responsive"></a>
+				<a class="right carousel-control" href="#itemslider" data-slide="next"><img src="https://s12.postimg.org/djuh0gxst/arrow_right.png" alt="Right" class="img-responsive"></a>
+			  </div>
+			  </div>
+			</div>
+		  </div>
+		</div>
+
+    {% endblock %}
+	</body>
+</html>

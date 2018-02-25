@@ -1,0 +1,29 @@
+.top-buffer
+{ margin-top:40px;
+}
+.jumbotron {
+    max-height: 220px;
+    font-size: x-large;
+    font-family: "Nixie One";
+    font-weight: bolder;
+}
+
+#form_row{
+    margin-bottom:20px;
+    background-color: #ffa834;
+}
+
+div.product_container {
+
+   height: 450px;
+}
+div.buy_button{
+    position: absolute;
+    bottom: 10px;
+    left: 25%
+}
+div.rate{
+    position: absolute;
+    bottom: 40px;
+    left: 40%
+}

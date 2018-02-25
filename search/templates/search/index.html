@@ -1,0 +1,109 @@
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>Ping Search | compare today</title>
+    <link rel="SHORTCUT ICON" href="../../static/images/Search.svg"/>
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://fonts.googleapis.com/css?family=Nixie+One" rel="stylesheet">
+    {% load staticfiles %}
+    <link rel="stylesheet" href="../../static/CSS1.css">
+    <link rel="stylesheet" href="../../static/css/bootstrap.css">
+    <link rel="stylesheet" href="../../static/css/font-awesome.min.css">
+
+    <script src="../../static/js/jquery.js"></script>
+    <script src="../../static/js/bootstrap.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@1.6.0/src/loadingoverlay.min.js"></script>
+
+
+
+
+    <meta name="description"
+          content="Best Price comparison and Product discovery platform for Mobiles, Electronics, Appliances and Lifestyle products.
+          Compare Mobiles, Laptops, Tablets, ACs, Refrigerators online in India! Best prices, reviews, offers &amp; deals from Flipkart, Amazon, Snapdeal etc. at delcarts.
+          Compare best price for mobiles, tablets, laptops, refrigerators, apparels online and get best price for any products. Best Online shopping website for price comparison
+          Buy products online at lowest prices in India. Find the largest collection of mobiles, tablets, laptops, televisions, appliances, furniture, clothes, shoes, baby products, books and more. Compare products, check out latest deals, offers, discounts and get best online prices from popular sellers. Research upcoming and latest products including specifications, reviews & ratings, photos & videos. Prices are valid across the leading cities like Mumbai, New Delhi, Bangalore, Chennai, Pune, Kolkata, Hyderabad, Jaipur, Chandigarh, Ahmedabad, NCR, etc.">
+
+    <meta property="og:description"
+          content="delcarts.com - Buy products online at lowest prices in India. Find the largest collection of mobiles, tablets, laptops, televisions, appliances, furniture, clothes, shoes, baby products, books and more. Compare products, check out latest deals, offers, discounts and get best online prices from popular sellers. Research upcoming and latest products including specifications, reviews & ratings, photos & videos. Prices are valid across major cities like Mumbai, New Delhi, Bangalore, Chennai, Pune, Kolkata, Hyderabad, Jaipur, Chandigarh, Ahmedabad, NCR etc."/>
+
+    <meta http-equiv="content-language" content="en-in"/>
+    <meta name="language" content="en"/>
+
+    <meta name="keywords"
+          content="snapdeal price, amazon price, shopclues price,Compare, Price, comparison, Best, compare, online ,prices, deal, lyf mobile price, 4G mobile, redmi note 3, oppo mobile price, iphone 7 price in india, samsung mobile price, electric bikes in India, mobiledekho, electric bike in india, scooty price list,HP Mini Laptop, led tv, compare price, kent, price compare, 91 mobiles, lyf ls 5502, jack martin home theater, panasonic kx-dt543, e commerce price comparison india, comparometer,price comparison website, price comparison website in india, online shopping price comparison, compare prices online, best price comparison website, top price comparison website, compare price in india, price comparison online shopping, compare store prices ">
+
+
+</head>
+<body>
+
+
+<div class="container-fluid">
+
+    <div class="display-1" align="center">
+        <div class="container-fluid">
+            <img src="../../static/images/Search.svg" alt="this website logo"
+                 style="height: 300px; width:300px">
+        </div>
+        <div class="caption">
+            <h1 style="font-family: 'Nixie One'; font-size: 10vmin;">Ping Search<span><h5 style="color: #269abc">
+                <b>(Beta)</b></h5></span></h1>
+            <div class="fb-like" data-href="https://facebook.com/delcarts" data-layout="button_count" data-action="like"
+                 data-size="large" data-show-faces="true" data-share="true"></div>
+        </div>
+
+    </div>
+    <div class="container-fluid">
+        <div class="text-center">
+            <h3 style="font-family: 'Nixie One'; font-size: 4vmin">#Shopping #Search #Simplified</h3>
+        </div>
+        <form class="form-horizontal " role="form" method="GET" action="http://127.0.0.1:8000/product">
+            <div class="form-group">
+                <div class="col-xs-offset-1 col-xs-10 col-sm-offset-2 col-sm-8  col-lg-offset-3 col-lg-6">
+                    <!-- {% csrf_token %} -->
+                    {{ form }}
+                    <datalist id="src">
+                        {% for q in auto_complete %}
+                        <option value="{{ q.search_term }}">
+                            {% endfor %}
+                    </datalist>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-xs-offset-2 col-xs-10 col-sm-offset-4 col-sm-8 col-lg-offset-5 col-lg-6">
+                    <button type="submit" class="btn btn-primary" onclick="overlay();">Search</button>
+                    <a href="http://127.0.0.1:8000/surprise" class="col-xs-offset-2 col-sm-offset-2 col-lg-offset-1">
+                        <button type="button" class="btn btn-primary" style="font-weight: 600">Surprise ME!</button>
+                    </a>
+
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+</div>
+<div class="container-fluid">
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <ul class="nav nav-pills container-fluid">
+            <!-- <li><a class="navbar-btn" href="http://127.0.0.1:8000/contact/" target="_blank"><span
+                    class="glyphicon glyphicon-envelope"></span> FeedBack</a></li> -->
+            <li><a class="navbar-btn"
+                   href="http://www.amazon.in"
+                   target="_blank"><i class="fa fa-amazon" aria-hidden="true"></i> Amazon</a></li>
+            <li><a class="navbar-btn" href="https://www.snapdeal.com/" target="_blank"><i class="fa fa-shopping-bag"
+                                                                                          aria-hidden="true"></i>
+                Snapdeal</a></li>
+            <li class="pull-right"><a class="navbar-btn" style="color: red;" href="#">Desktop Site Preferred</a></li>
+        </ul>
+    </nav>
+</div>
+<!-- <img src="../../static/images/Spinner.gif" id="loading_gif" style="display:none; position: fixed; top:50%; left: 50%; margin-left: -100px;margin-top:-100px" / > -->
+
+<script>
+function overlay(){
+  $.LoadingOverlay("show",{maxSize: "150px" , custom:"<h4 style=\"margin-top:160px\">Please do not 'Refresh'</h4>", image: "../../static/images/Spinner.gif"});
+}
+</script>
+</body>
+</head>
+</html>

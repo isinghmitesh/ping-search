@@ -1,0 +1,51 @@
+{% if flp_products %}
+        {% for f_products in flp_products %}
+            <div class="col-lg-3 bucket">
+                <a href="{{ f_products.p_link }}">
+                    <img src="{{ f_products.p_img }}" alt="Avatar" class="img-thumbnail">
+                    <div class="overlay">
+                        <div class="text">{{ f_products.p_name|slice:":50" }}</div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    {% if amz_products %}
+        {% for a_products in amz_products %}
+            <div class="col-lg-3 bucket">
+                <a href="{{ a_products.p_link }}">
+                    <img src="{{ a_products.p_img }}" alt="Avatar" class="img-thumbnail">
+                    <div class="overlay">
+                        <div class="text">{{ a_products.p_name|slice:":50" }}</div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    {% if snd_products %}
+        {% for s_products in snd_products %}
+            <div class="col-lg-3 bucket">
+                <a href="{{ s_products.p_link }}">
+                    <img src="{{ s_products.p_img }}" alt="Avatar" class="img-thumbnail">
+                    <div class="overlay">
+                        <div class="text">{{ s_products.p_name|slice:":50" }}</div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    {% if eby_products %}
+        {% for e_products in eby_products %}
+            <div class="col-lg-3 bucket">
+                <a href="{{ e_products.p_link }}">
+                    <img src="{{ e_products.p_img }}" alt="Avatar" class="img-thumbnail">
+                    <div class="overlay">
+                        <div class="text">{{ e_products.p_name|slice:":50" }}</div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    {% endif %}
