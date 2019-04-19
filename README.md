@@ -1,8 +1,9 @@
 # ping search.
 
 once albert enstien said ....."everything should be made as simple as possible,  but not simpler" 
-today i present to you the simplest product discovery webapp. 
-Our value proposition is:
+i present to you the simplest product discovery Web application. \n
+
+value proposition is:
 
 
 1> offers complete search privacy. so you wont see facebook ads of your searches. 
